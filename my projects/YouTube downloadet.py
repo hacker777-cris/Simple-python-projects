@@ -11,8 +11,14 @@ for x in range(len(actions)):
 
 
 action = input("WHAT DO YOU WANT TO DO?: ")
-
-yt = YouTube(input("ENTER LINK HERE: "))
+while True:
+    try :
+        yt = YouTube(input("ENTER LINK HERE: "))
+        
+        break
+    except:
+        print("please enter a valid link!!!")
+        
 yd = YouTube.streams
 if action == '1':
     print("TITLE: " + yt.title)
