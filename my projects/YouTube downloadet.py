@@ -9,39 +9,61 @@ actions = ['1.CHECK TITLE','2.CHECK VIEWS','3.DOWNLOAD VIDEO']
 for x in range(len(actions)):
     print(actions[x])
 
-
 action = input("WHAT DO YOU WANT TO DO?: ")
+
+#we make sure user enters a valid link
 while True:
     try :
         yt = YouTube(input("ENTER LINK HERE: "))
         
         break
-    except:
-        print("please enter a valid link!!!")
-        
+    except :
+        print("please enter a valid link")
+    
+
 yd = YouTube.streams
-if action == '1':
+
+def title():
     print("TITLE: " + yt.title)
-elif action == '2':
+    return
+
+def views():
     print("VIEWS: " , yt.views)
+
+    return
+def Download_high():
+    print("this may take time depending on length of video")
+    print("Downloading \n Please wait.......")
+    yd = yt.streams.get_highest_resolution()
+    yd.download('/users/arcade/desktop/storage')
+    print("your video has been downloaded")
+
+    return
+def Download_low():
+    print("this may take time depending on length of video")   
+    print("Downloading \n Please wait.......")
+    yd = yt.streams.get_lowest_resolution()
+    yd.download('/users/arcade/desktop/storage')
+    print("your video has been downloaded")
+    
+    return
+
+
+if action == '1':
+    title()
+
+elif action == '2':
+    views()
 
 elif action == '3':
     resolution = input("Do you want your video in high or low resolution? (high/low): ").lower()
     
     if resolution == 'low':
-        print("this may take time depending on length of video")
-        print("Downloading \n Please wait.......")
-        yd = yt.streams.get_lowest_resolution()
-        yd.download('/users/arcade/desktop/storage')
-        print("your video has been downloaded")
-
-
+        Download_low()
+        
     elif resolution == 'high':
-        print("this may take time depending on length of video")
-        print("Downloading \n Please wait.......")
-        yd = yt.streams.get_highest_resolution()
-        yd.download('/users/arcade/desktop/storage')
-        print("your video has been downloaded")
+        Download_high()
+        
 
 
 input("press enter to exit......")
