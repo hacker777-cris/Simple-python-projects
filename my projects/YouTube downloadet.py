@@ -2,6 +2,9 @@
 #because dcoder does not have a terminal hence we cannot install pytube
 from pytube import YouTube
 from sys import argv
+import tkinter as tk
+from tkinter import filedialog
+
 link =argv[0]
 print("\n                                         WELCOME TO THE YOUTUBE DOWNLOADER!!")
 print("\n                                         created by H4CK3R_777")
@@ -36,21 +39,44 @@ while True:
         print("VIEWS: " , yt.views)
 
         return
+    
+
     def Download_high():
-        print("this may take time depending on length of video")
+        # Create the root window
+        root = tk.Tk()
+        root.withdraw()
+
+        # Ask the user to select a folder on the desktop
+        folder_path = filedialog.askdirectory(initialdir='~/Desktop', title='Select a folder')
+
+        # Print the selected folder path
+        print(f"The selected folder is: {folder_path}")
+
+        print("this may take time depending on length of video")   
         print("Downloading \n Please wait.......")
         yd = yt.streams.get_highest_resolution()
-        yd.download('/users/arcade/desktop/storage')
+        yd.download(folder_path)
         print("your video has been downloaded")
 
         return
     def Download_low():
+       
+        # Create the root window
+        root = tk.Tk()
+        root.withdraw()
+
+        # Ask the user to select a folder on the desktop
+        folder_path = filedialog.askdirectory(initialdir='~/Desktop', title='Select a folder')
+
+        # Print the selected folder path
+        print(f"The selected folder is: {folder_path}")
+
         print("this may take time depending on length of video")   
         print("Downloading \n Please wait.......")
         yd = yt.streams.get_lowest_resolution()
-        yd.download('/users/arcade/desktop/storage')
+        yd.download(folder_path)
         print("your video has been downloaded")
-
+        
     if action == '1':
         title()
 
@@ -75,5 +101,6 @@ while True:
             quit()
         else:
             print("Invalid choice. Please enter 'y' or 'n'.")
+
 
 
